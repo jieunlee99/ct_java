@@ -1,12 +1,13 @@
-package baekjoon;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
-import java.util.Scanner;
+public class B1550 {
+    public static void main(String[] args) throws Exception{
+        // Scanner보다 속도가 빠르다.
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String hex = br.readLine();
 
-public class b1550 {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-
-        String input = in.nextLine();
-        System.out.println(Integer.parseInt(input, 16));
+        // parseInt 통해서 16진수 String을 10진수로 변경 가능
+        System.out.println(Integer.parseInt(hex, 16));
     }
 }

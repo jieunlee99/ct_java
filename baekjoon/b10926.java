@@ -1,10 +1,10 @@
-package baekjoon;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
-import java.util.Scanner;
-public class b10926 {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        System.out.println(input+"??!");
+public class B10926 {
+    public static void main(String[] args) throws Exception{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String id = br.readLine();
+        System.out.println(id+"??!");
     }
 }

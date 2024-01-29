@@ -1,13 +1,11 @@
-package baekjoon;
-
-import java.util.Scanner;
 import java.math.BigInteger;
+import java.util.Scanner;
 
-public class b2338 {
+public class B2338 {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        BigInteger A = in.nextBigInteger();
-        BigInteger B = in.nextBigInteger();
+        Scanner sc  = new Scanner(System.in);
+        BigInteger A = sc.nextBigInteger();
+        BigInteger B = sc.nextBigInteger();
 
         System.out.println(A.add(B));
         System.out.println(A.subtract(B));
