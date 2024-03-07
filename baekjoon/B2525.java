@@ -3,18 +3,17 @@ package bj;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
 import java.util.StringTokenizer;
 
-public class B11382 {
+public class B2525 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-        BigInteger A = new BigInteger(st.nextToken());
-        BigInteger B = new BigInteger(st.nextToken());
-        BigInteger C = new BigInteger(st.nextToken());
+        int A = Integer.parseInt(st.nextToken());
+        int B = Integer.parseInt(st.nextToken());
+        int C = Integer.parseInt(br.readLine());
 
-        System.out.println(A.add(B).add(C));
+        System.out.println(((A+(B+C)/60)%24)+" "+((B+C)%60));
     }
 }
