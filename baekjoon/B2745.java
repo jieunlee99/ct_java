@@ -9,25 +9,25 @@ import java.util.StringTokenizer;
 
 public class B2745 {
     public static void main(String[] args) throws IOException {
+       // 다시 풀기
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-        String N = st.nextToken();
-        int B = Integer.parseInt(st.nextToken());
+        String n = st.nextToken();
+        int b = Integer.parseInt(st.nextToken());
 
-        int tmp = 1; // B진법을 위한 변수
-        int sum = 0; // 결과값
-
-        for(int i=N.length()-1; i>=0; i--) {
-            char C = N.charAt(i);
-            if('A'<=C && C<='Z') { // 알파벳일 때
-                sum += (C-'A'+10)*tmp;
-            } else { // 숫자일 때
-                sum += (C-'0')*tmp;
+        int mul = 1;
+        int result = 0;
+        for(int i=n.length()-1; i>=0; i--) {
+            char tmp = n.charAt(i);
+            if ('0' <= tmp && tmp <='9') { // 숫자일 때
+                result += mul*Integer.parseInt(String.valueOf(tmp));
+            } else if ('A' <= tmp && tmp <='Z') { // 알파벳일 때
+                result += mul*(tmp-'A'+10);
             }
-            tmp *= B;
+            mul *= b;
         }
 
-        System.out.println(sum);
+        System.out.println(result);
     }
 }
