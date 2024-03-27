@@ -8,39 +8,36 @@ import java.util.*;
 public class B12789 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-        int n = Integer.parseInt(br.readLine()); // 학생 수
+        int n = Integer.parseInt(br.readLine()); // n명이 서 있음.
 
-        Queue<Integer> q = new LinkedList<>(); // 대기열
-        Stack<Integer> s= new Stack<>(); // 추가 대기열
+        Queue<Integer> q = new LinkedList<>(); // 현재 줄 서 있는 곳
+        Stack<Integer> s = new Stack<>(); // 한 명씩만 설 수 있는 공간
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-
-        // 줄 서있는 학생들을 큐에 넣는다.
+        // 일단 모두 줄 세움
+        st = new StringTokenizer(br.readLine(), " ");
         for(int i=0; i<n; i++) {
             q.offer(Integer.parseInt(st.nextToken()));
         }
 
-        int start = 1; // 간식 먹는 순서
-
-        // 큐에 있는 학생들을 간식을 받게 하거나 추가 대기시킴
+        int cnt = 1;
         while(!q.isEmpty()) {
-            if(q.peek() == start) {
+            if(q.peek() == cnt) {
                 q.poll();
-                start++;
-            } else if(!s.isEmpty() && s.peek() == start) {
+                cnt++;
+            } else if(!s.empty() && s.peek() == cnt) { // 이부분을 생각못해서 참고함
                 s.pop();
-                start++;
+                cnt++;
             } else {
                 s.push(q.poll());
             }
         }
 
-        // 추가 대기중인 학생들을 간식을 주거나 실패
         while(!s.isEmpty()) {
-            if(s.peek() == start) {
+            if(s.peek() ==  cnt) {
                 s.pop();
-                start++;
+                cnt ++;
             } else {
                 System.out.println("Sad");
                 return;
