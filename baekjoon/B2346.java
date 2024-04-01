@@ -7,13 +7,13 @@ import java.io.*;
 import java.util.*;
 
 public class B2346 {
-    static class Balloon {
+    static class Ballon {
         int idx;
-        int element;
+        int value;
 
-        public Balloon(int idx, int element) {
+        public Ballon(int idx, int value) {
             this.idx = idx;
-            this.element = element;
+            this.value = value;
         }
     }
 
@@ -23,29 +23,29 @@ public class B2346 {
 
         int n = Integer.parseInt(br.readLine());
 
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        Deque<Ballon> deque = new LinkedList<>();
 
-        // idx, element 같이 저장
-        Deque<Balloon> deque = new LinkedList<>();
-        for(int i=1; i<=n; i++) {
-            deque.offer(new Balloon(i, Integer.parseInt(st.nextToken())));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        for (int i = 1; i <= n; i++) {
+            deque.offer(new Ballon(i, Integer.parseInt(st.nextToken())));
         }
 
         int prev = 0;
-
         while(deque.size() > 1) {
-            Balloon cur = prev >= 0  ? deque.pollFirst() : deque.pollLast();
-            for(int i=1; i<Math.abs(cur.element); i++) {
-                if(cur.element > 0) {
+            // 이전 풍선의 값이 양수인지 음수인지에 따라
+            // 양수라면 맨 앞 원소를 추출하고, 음수라면 맨 뒤 원소를 추출한다.
+            Ballon cur = (prev >= 0 ) ? deque.pollFirst() : deque.pollLast();
+            for(int i=0; i<Math.abs(cur.value)-1; i++) {
+                if(cur.value > 0) { // 풍선 안 종이가 양수일 때는 오른쪽으로 이동
                     deque.offerLast(deque.pollFirst());
-                } else {
+                } else { // 음수일 때는 왼쪽으로 이동
                     deque.offerFirst(deque.pollLast());
                 }
             }
-            prev = cur.element;
+
+            prev = cur.value;
             sb.append(cur.idx).append(" ");
         }
-        // 마지막으로 남은 하나 출력
         sb.append(deque.poll().idx);
 
         System.out.println(sb);
